@@ -1,0 +1,13 @@
+{
+    "editor.tabSize": 4,
+    "C_Cpp.formatting": "vcFormat",
+    "C_Cpp.vcFormat.indent.braces": false,
+    "material-icon-theme.folders.associations": {
+        "game": "console",
+        "engine": "shader",
+    },
+    "files.associations": {
+        "*.h": "c",
+        "*.c": "c",
+    }
+}

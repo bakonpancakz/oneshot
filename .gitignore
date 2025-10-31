@@ -1,0 +1,6 @@
+bin/
+game/shaders/*.spv
+*/resources/include.res
+*/resources/*.yuri
+*/source/*.o
+TODO.md
