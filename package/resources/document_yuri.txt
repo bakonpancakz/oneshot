@@ -1,0 +1,72 @@
+
+.--------------------------------------------------------------------------.
+|                        YURI Archive File Format                          |
+|                (c) 2025 suzzy games. All Rights Reserved.                |
+'--------------------------------------------------------------------------'
+
+The OneShot game engine exclusively uses a proprietary archive format named 
+'YURI' denoted with the '.yuri' file extension and the 'application/x-yuri' 
+MIME type.
+
+* All values are to be written as Little-Endian.
+* Shaders are compiled for 'SPIR-V v1.3' target.
+
+---------------------------------------------------------------------------
+ENTRY TYPE
+---------------------------------------------------------------------------
+Flag   Name              Description
+-----  --------------    --------------------------------------------------
+0x00   TYPE_EMBEDDED     Included Original File
+0x01   TYPE_SHADER_VERT  Compiled Shader Vertex
+0x02   TYPE_SHADER_FRAG  Compiled Shader Fragment
+0x03   TYPE_IMAGE        Encoded image (QOI Encoded)
+0x04   TYPE_AUDIO        Encoded audio (QOA Encoded)
+0x05   TYPE_MODEL        Wavefront .obj File
+0x06   TYPE_SCENE        Game Scene Description
+0x07   TYPE_SCRIPT       Lua Script
+
+---------------------------------------------------------------------------
+ENTRY FLAGS
+---------------------------------------------------------------------------
+Flag   Name               Description
+-----  -----------------  -------------------------------------------------
+0x80   FLAG_COMPRESSED    Compressed (Reserved)                    (1 << 7)
+0x40   FLAG_UNASSIGNED_2  Unassigned                               (1 << 6)
+0x20   FLAG_UNASSIGNED_3  Unassigned                               (1 << 5)
+0x10   FLAG_UNASSIGNED_4  Unassigned                               (1 << 4)
+0x08   FLAG_UNASSIGNED_5  Unassigned                               (1 << 3)
+0x04   FLAG_UNASSIGNED_6  Unassigned                               (1 << 2)
+0x02   FLAG_UNASSIGNED_7  Unassigned                               (1 << 1)
+0x01   FLAG_UNASSIGNED_8  Unassigned                               (1 << 0)
+
+---------------------------------------------------------------------------
+ARCHIVE HEADER
+---------------------------------------------------------------------------
+Denotes information about the contents in the archive manifest
+
+Offset  Size    Type        Description
+------  ------  ----------  -----------------------------------------------
+0x00    4       uint32_t    ASCII magic 'YURI' (0x59555249)
+0x04    4       uint32_t    Length of archive manifest (entry count)
+0x08    ...     -           Manifest entries follow immediately after
+
+---------------------------------------------------------------------------
+ARCHIVE ENTRY (REPEATING)
+---------------------------------------------------------------------------
+Denotes an entry in the archive manifest
+
+Offset  Size    Type        Description
+------  ------  ----------  -----------------------------------------------
+0x00    1       uint8_t     Entry type
+0x01    1       uint8_t     Entry flags (bitfield; 0=none)
+0x02    4       uint32_t    Payload size in bytes
+0x06    4       uint32_t    CRC32-IEEE checksum of encoded data
+0x0A    2       uint16_t    Asset Name length (as N)
+0x0C    N       char[]      Asset Name string (ASCII, NULL-terminated)
+
+---------------------------------------------------------------------------
+ARCHIVE PAYLOADS
+---------------------------------------------------------------------------
+Immediately after all manifest entries, the raw binary payloads are stored
+back-to-back, in the same order as the manifest entries.
+

@@ -1,0 +1,51 @@
+
+--------------------------------------------------------------------------------
+YURI Toolkit
+(c) 2025 suzzy games. All Rights Reserved.
+--------------------------------------------------------------------------------
+
+yuri package <input dir> <filename>
+  Create an Archive from a Directory, files are processed by their extension:
+
+  [!] The parent directory is ignored, assets should be organized by being
+      placed inside a subdirectory. Nested subdirectories are ignored.
+
+  [!] Copy operations are naive and must be manually validated for correctness.
+      Corrupt or malformed assets will cause the engine to throw an error.
+
+  * .bin      : Binary File                         => YURI_EMBEDDED (Copy)
+  * .vert.spv : Compiled SPIR-V Vertex Shader       => YURI_SHADER_V (Copy)
+  * .frag.spv : Compiled SPIR-V Fragment Shader     => YURI_SHADER_F (Copy)
+  * .bmp      : 32-Bit Bitmap Image                 => YURI_IMAGE (Encoded)
+  * .qoi      : QOI Encoded Image                   => YURI_IMAGE (Copy)
+  * .wav      : 16-bit WAV File                     => YURI_AUDIO (Encoded)
+  * .qoa      : QOA Encoded Audio                   => YURI_AUDIO (Copy)
+  * .obj      : Wavefront .obj File                 => YURI_MODEL (Copy)
+  * .xml      : Game Scene                          => YURI_SCENE (Copy)
+  * .lua      : Lua script                          => YURI_SCRIPT (Copy)
+
+yuri extract <filename> <output dir>
+  Recreate a Directory from an Archive, the following directory should (to a
+  certain degree) support being re-packaged.
+
+  [!] Existing files will be overwritten if they share the same name and
+      extension. List the contents to check for conflicts before extracting.
+
+  * YURI_EMBEDDED : Binary File                     => .bin
+  * YURI_SHADER_V : Compiled SPIR-V Vertex Shader   => .vert.spv
+  * YURI_SHADER_F : Compiled SPIR-V Fragment Shader => .frag.spv
+  * YURI_IMAGE    : QOI Encoded Image               => .qoi
+  * YURI_AUDIO    : QOA Encoded Audio               => .qoa
+  * YURI_MODEL    : Wavefront .obj File             => .obj
+  * YURI_SCENE    : Scene Description               => .xml
+  * YURI_SCRIPT   : Lua Script                      => .lua
+
+yuri list <filename>
+  Validate and list the contents of a Archive
+
+yuri docs <title> <filename?>
+  Print Included Documents to Console
+  * help   : This Menu
+  * yuri   : YURI Archive File Format Specification
+  * errors : Troubleshootin Guide for OneShot Errors
+

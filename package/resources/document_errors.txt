@@ -1,0 +1,130 @@
+
+.-----------------------------------------------------------------------------.
+|                       OneShot Error Messages (English)                      |
+|                  (c) 2025 suzzy games. All Rights Reserved.                 |
+'-----------------------------------------------------------------------------'
+
+[!] The following errors are written with the expectation that you are using 
+the provided KUMA archive. If you are tinkering with or modifying the archive 
+no support will be provided.
+
+.-----------------------------------------------------------------------------.
+|                                    ASSETS                                   |
+'-----------------------------------------------------------------------------'
+
+> "Cannot Open Archive 'data.yuri' (...)"
+
+* The Archive cannot be used as it was not found or it's file permissions are 
+  too restrictive.
+
+-------------------------------------------------------------------------------
+
+> "Provided file is not a YURI Archive"
+> "Unexpected EOF reading Archive Header"
+> "Unexpected EOF reading Archive Entry"
+> "Unexpected EOF reading Archive Entry Name"
+> "(X) 'XYZ' Reached EOF when attempting to read from archive"
+> "(X) 'XYZ' Checksum Error (0x12345678 ^ 0x12345678)"
+
+* The Archive is Corrupt or Incomplete.
+
+-------------------------------------------------------------------------------
+
+> "Unsupported Asset Type (X)"
+
+* Either newer unsupported asset types were introduced in newer versions or the
+  archive is corrupt.
+
+--------------------------------------------------------------------------------
+
+> "(X) 'XYZ' Memory Error: ..."
+
+* The engine was unable to allocate enough memory to complete an operation and 
+  must exit. Hardware problems may also trigger this error.
+
+--------------------------------------------------------------------------------
+
+> "Cannot Evacuate Asset '...' with Type (X)"
+> "Cannot Prepare Asset '...' with Type (X)"
+
+* These messages should not appear during gameplay, please contact a developer
+  if you are not using a preview or development build.
+
+--------------------------------------------------------------------------------
+
+> "Cannot parse more than X assets from Archive"
+
+* For performance concerns the engine is compiled with the capacity to track up
+  to 256 assets across all parsed archives. A developer must be recompiled with
+  the 'ASSET_LIST_CAPACITY' macro set to a larger value.
+
+--------------------------------------------------------------------------------
+
+> "Unable to create worker X (...)"
+
+* The engine was unable to create a worker thread. Either the system has run out
+  of memory or an abitrary limitation was placed by the operating system.
+
+--------------------------------------------------------------------------------
+
+> "(X) 'XYZ' QOI decoding error, please refer to the manual. Error Code: XXX"
+
+* QOI_MEMORY_ERROR (1)
+  A system error was encountered, either memory has been exhausted or there is
+  a hardware issue.
+
+* QOI_INVALID_ARGUMENTS (2)
+  The function was called with invalid arguments, please contact a developer.
+
+* QOI_UNEXPECTED_EOF (3)
+  Reached the end of the file before processing had completed, the archive is
+  corrupt.
+
+* QOI_NOT_A_QOI_FILE (101)
+  Either the provided file is not a QOI encoded file, or the magic bytes are 
+  incorrect signifying the archive is corrupt.
+
+* QOI_INVALID_HEADER (102)
+  The file header has specified an invalid image width or height, the maximum
+  size for a given dimension is 16384 pixels.
+  
+* QOI_INVALID_COLORSPACE (103)
+  The file header has specified an invalid image colorspace, the archive is
+  corrupt.
+
+--------------------------------------------------------------------------------
+
+> "(X) 'XYZ' QOA decoding error, please refer to the manual. Error Code: XXX"
+
+* QOA_MEMORY_ERROR (1)
+  A system error was encountered, either memory has been exhausted or there is
+  a hardware issue.
+
+* QOA_INVALID_ARGUMENTS (2)
+  The function was called with invalid arguments, please contact a developer.
+
+* QOA_UNEXPECTED_EOF (3)
+  Reached the end of the file before processing had completed, the archive is
+  corrupt.
+
+* QOA_NOT_A_QOA_FILE (101)
+  Either the provided file is not a QOA encoded file, or the magic bytes are 
+  incorrect signifying the archive is corrupt.
+
+* QOA_UNSUPPORTED_STREAMING (102)
+  The decoder only supports "static" files and cannot process the provided 
+  "streaming" file.
+
+* QOA_TOO_MANY_CHANNELS (103)
+  Too many channels were provided, only up to eight channels are officially
+  supported.
+
+* QOA_HEADER_MISMATCH (104)
+  A frame was provided with a different sample rate or amount of channels
+  from the previous frame.
+
+* QOA_MALFORMED_FRAME (105)
+  Attempted to decode a malformed QOA frame, the archive is corrupt.
+
+-------------------------------------------------------------------------------
+
