@@ -4,8 +4,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "C:/lib/lua/src",
-                "C:/VulkanSDK/1.4.321.0/Include",
+                "${LUA_SDK}/src",
+                "${VULKAN_SDK}/Include",
                 "${workspaceFolder}/engine/include",
                 "${workspaceFolder}/package/include"
             ],

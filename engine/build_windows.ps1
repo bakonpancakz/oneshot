@@ -4,10 +4,20 @@ param(
     [switch]$StartGame
 )
 $opt_level = if ($SkipOptimize) { @("-O0") } else { @("-flto", "-O3") }
-$path_game = "..\bin\kuma.exe"
-$path_yuri = "..\bin\yuri.exe"
+$path_bin  = "..\bin"
+$path_game = "$path_bin\kuma.exe"
+$path_yuri = "$path_bin\yuri.exe"
 $path_glsl = "..\game\build_shaders.ps1"
 $path_data = ".\resources\include.res"
+
+# Create Output Directory
+$null = New-Item -ItemType Directory -Force -Path "../bin"
+
+#  Required YURI Toolkit
+if (!(Test-Path $path_yuri)) {
+    Write-Error "Missing Executable for YURI Toolkit"
+    exit 1
+}
 
 # Compile Resources
 if (-not $SkipResources) {
@@ -35,7 +45,7 @@ $inputFiles = Get-ChildItem -Recurse -Include *.c -Path "source" | ForEach-Objec
     -Wall -Wextra -Werror -pedantic -std=c23 `
     -Wundef -Wdouble-promotion -Wnull-dereference `
     -Wswitch-enum -Wmissing-prototypes -Wmissing-declarations `
-    -Iinclude -IC:\lib\lua\src -I$env:VULKAN_SDK\Include `
+    -Iinclude -I$env:LUA_SDK\src -I$env:VULKAN_SDK\Include `
     -lgdi32 -lxinput -lole32 -loleaut32 `
     -m64 -mwindows $opt_level `
     -o $path_game
