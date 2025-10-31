@@ -12,7 +12,7 @@ CREDITS
 
 Andrew 'DakotaLmfao' Lopez
   * Music / SFX / 2D Sprites
-  * https://x.com/dakotalmfao
+  * https://x.com/DanteLmfao
 
 @suldotpwp 'sul'
   * Writing / Concept Art
