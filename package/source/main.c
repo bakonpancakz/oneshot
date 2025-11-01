@@ -1,7 +1,8 @@
-#include <stdlib.h>
 #include <command_package.h>
 #include <command_text.h>
 #include <command_list.h>
+#include <stdlib.h>
+#include <errno.h>
 
 int main(int argc, char** argv) {
 

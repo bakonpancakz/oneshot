@@ -8,7 +8,7 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <stdio.h>
-
+#include <errno.h>
 
 static inline int str_suffix(const char* string, const char* suffix) {
     size_t string_length = strlen(string);

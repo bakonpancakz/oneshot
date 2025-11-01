@@ -1,7 +1,8 @@
+#include <util_yuri.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <util_yuri.h>
+#include <errno.h>
 
 unsigned int read_u32(FILE* f) {
     unsigned char v[4];
