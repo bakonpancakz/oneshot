@@ -13,6 +13,19 @@
             "intelliSenseMode": "windows-gcc-x64",
             "cStandard": "c23",
             "defines": []
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "${LUA_SDK}/src",
+                "${VULKAN_SDK}/include",
+                "${workspaceFolder}/engine/include",
+                "${workspaceFolder}/package/include"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "intelliSenseMode": "gcc-x64",
+            "cStandard": "c23",
+            "defines": []
         }
     ]
 }

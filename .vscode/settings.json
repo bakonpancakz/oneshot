@@ -1,13 +1,21 @@
 {
-    "editor.tabSize": 4,
     "C_Cpp.formatting": "vcFormat",
     "C_Cpp.vcFormat.indent.braces": false,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": null,
+    "editor.rulers": [
+        120
+    ],
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.associations": {
+        "*.h": "c",
+        "*.c": "c",
+    },
     "material-icon-theme.folders.associations": {
         "game": "console",
         "engine": "shader",
     },
-    "files.associations": {
-        "*.h": "c",
-        "*.c": "c",
-    }
 }
